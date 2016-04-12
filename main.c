@@ -8,7 +8,8 @@ int main()
   string_array* strings;
   strings = (string_array*)malloc(3300000*sizeof(string_array));
   char aux[6];
-  int tam,i;
+  int tam;
+//  int i;
   for(tam=0;scanf("%s",aux)==1;tam++)
   {
  	 
