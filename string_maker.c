@@ -76,8 +76,9 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		crescente(strings,tam);
-		shuffle(strings,tam/2);
+		crescente(strings,tam/2);
+		decrescente(strings + tam/2,tam/2);
+ 		shuffle(strings,tam);
 	}
 	for(i=0;i<tam;i++)
 	{

@@ -9,7 +9,7 @@ int main()
   strings = (string_array*)malloc(3300000*sizeof(string_array));
   char aux[6];
   int tam;
-//  int i;
+  //int i;
   for(tam=0;scanf("%s",aux)==1;tam++)
   {
  	 
