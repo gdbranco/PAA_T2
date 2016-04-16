@@ -1,47 +1,20 @@
 #!/usr/bin/python
 import subprocess
+import os
 #Shuffle
-num = 10
-cmd = "./maker.out " + str(num) + " 3 > ./Entradas/entrada_" + str(num) + "_shuffle.txt"
-for i in range(0,4):
-	process = subprocess.Popen(cmd,shell=True, stdout=subprocess.PIPE)
-	process.wait()
-	num*=2
-	cmd = "./maker.out " + str(num) + " 3 > ./Entradas/entrada_" + str(num) + "_shuffle.txt"
-num = 100
-cmd = "./maker.out " + str(num) + " 3 > ./Entradas/entrada_" + str(num) + "_shuffle.txt"
-for i in range(0,16):
-	process = subprocess.Popen(cmd,shell=True, stdout=subprocess.PIPE)
-	process.wait()
-	num*=2
-	cmd = "./maker.out " + str(num) + " 3 > ./Entradas/entrada_" + str(num) + "_shuffle.txt"
-#Normal
-num = 10
-cmd = "./maker.out " + str(num) + " 1 > ./Entradas/entrada_" + str(num) + "_normal.txt"
-for i in range(0,4):
-	process = subprocess.Popen(cmd,shell=True, stdout=subprocess.PIPE)
-	process.wait()
-	num*=2
-	cmd = "./maker.out " + str(num) + " 1 > ./Entradas/entrada_" + str(num) + "_normal.txt"
-num = 100
-cmd = "./maker.out " + str(num) + " 1 > ./Entradas/entrada_" + str(num) + "_normal.txt"
-for i in range(0,16):
-	process = subprocess.Popen(cmd,shell=True, stdout=subprocess.PIPE)
-	process.wait()
-	num*=2
-	cmd = "./maker.out " + str(num) + " 1 > ./Entradas/entrada_" + str(num) + "_normal.txt"
-#Reverse
-num = 10
-cmd = "./maker.out " + str(num) + " 2 > ./Entradas/entrada_" + str(num) + "_reverse.txt"
-for i in range(0,4):
-	process = subprocess.Popen(cmd,shell=True, stdout=subprocess.PIPE)
-	process.wait()
-	num*=2
-	cmd = "./maker.out " + str(num) + " 2 > ./Entradas/entrada_" + str(num) + "_reverse.txt"
-num = 100
-cmd = "./maker.out " + str(num) + " 2 > ./Entradas/entrada_" + str(num) + "_reverse.txt"
-for i in range(0,16):
-	process = subprocess.Popen(cmd,shell=True, stdout=subprocess.PIPE)
-	process.wait()
-	num*=2
-	cmd = "./maker.out " + str(num) + " 2 > ./Entradas/entrada_" + str(num) + "_reverse.txt"
+files = [("Reversed","2"),("Shuffle","3"),("Normal","1")]
+for type in files:
+	num = 10
+	archives = 20
+	for i in range(0,archives):
+		outpath = "./Entradas/" + type[0] + "/";
+		if not os.path.isdir(outpath):
+			print "Caminho: " + outpath + "\nNao existe e sera criado"
+			os.makedirs(outpath)
+		cmd = "./maker.out " + str(num) + " " + type[1]  + " > " + outpath  + str(num) + "_" + type[0].lower() + ".txt"
+		print "Running : " + cmd
+		process = subprocess.Popen(cmd,shell=True, stdout=subprocess.PIPE)
+		process.wait()
+		num*=2
+		if(i == 3):
+			num = 100

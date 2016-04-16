@@ -3,11 +3,12 @@ import subprocess
 import time
 import os
 import sys
-if (len(sys.argv) > 1):
+if (len(sys.argv) > 2):
 	sort = ["Bubble","Comb","Insertion","Merge","Selection","Shell"]
 	files = ["Reversed","Shuffle","Normal"]
 	archives = 20
-	times = int(sys.argv[1])
+	timeout = int(sys.argv[1]);
+	times = int(sys.argv[2])
 	for mode in sort:
 		outpath = "./Saidas/" + mode + "/"
 		if not os.path.isdir(outpath):
@@ -18,8 +19,8 @@ if (len(sys.argv) > 1):
 			num = 10
 			sum = float(0)
 			for i in range(0,archives):
-				infile_name = inpath + "entrada_" + str(num) + "_" + type.lower() + ".txt"
-				cmd = "timeout 1800 ./" + mode.lower() + ".out <" + infile_name
+				infile_name = inpath + str(num) + "_" + type.lower() + ".txt"
+				cmd = "timeout " + str(timeout) + " ./" + mode.lower() + ".out <" + infile_name
 				print "Running: " + cmd
 				for j in range(0,times):
 					print "times " + str(j);		
@@ -40,4 +41,4 @@ if (len(sys.argv) > 1):
 					num = 100
 		sum = float(0)
 else:
-	print "Usage: ./script <times>"
+	print "Usage: ./script <timout> <times>"
