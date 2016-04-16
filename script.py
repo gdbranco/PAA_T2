@@ -1,19 +1,34 @@
 #!/usr/bin/python
 import subprocess
-#Shuffle
-num = 10
-cmd = "timeout 7200 ./teste.out < ./Entradas/Shuffle/entrada_" + str(num) + "_shuffle.txt >> ./Saidas/Shuffle/saida_" + str(num) + "_shuffle.txt"
-for i in range(0,4):
-	for j in range(0,10):
-		process = subprocess.Popen(cmd,shell=True, stdout=subprocess.PIPE)
-		process.wait()
-	num*=2
-	cmd = "timeout 7200 ./teste.out < ./Entradas/Shuffle/entrada_" + str(num) + "_shuffle.txt >> ./Saidas/Shuffle/saida_" + str(num) + "_shuffle.txt"
-num = 100
-cmd = "timeout 7200 ./teste.out < ./Entradas/Shuffle/entrada_" + str(num) + "_shuffle.txt >> ./Saidas/Shuffle/saida_" + str(num) + "_shuffle.txt"
-for i in range(0,16):
-	for j in range(0,10):
-		process = subprocess.Popen(cmd,shell=True, stdout=subprocess.PIPE)
-		process.wait()
-	num*=2
-	cmd = "timeout 7200 ./teste.out < ./Entradas/Shuffle/entrada_" + str(num) + "_shuffle.txt >> ./Saidas/Shuffle/saida_" + str(num) + "_shuffle.txt"
+import time
+#Reverse
+sort = ["Bubble","Comb","Insertion","Merge","Selection","Shell"]
+files = ["Reversed","Shuffle","Normal"]
+archives = 20
+times = 1
+for mode in sort:
+	for type in files:
+		num = 10
+		sum = float(0)
+		for i in range(0,archives):
+			infile_name = "./Entradas/" + type + "/entrada_" + str(num) + "_" + type.lower() + ".txt"
+			cmd = "timeout 1800 ./" + mode.lower() + ".out <" + infile_name
+			print "Running: " + cmd
+			for j in range(0,times):
+				print "times " + str(j);		
+				process = subprocess.Popen(cmd,shell=True, stdout=subprocess.PIPE)
+				process.wait()
+				sum += float(process.stdout.read())
+				time.sleep(2)
+			sum/=times
+			outfile_name = "./Saidas/" + mode + "/saida_" + type.lower() + ".csv";
+			with open(outfile_name,"a") as f:
+				duracao = "{0:.6f}".format(sum)
+				print "Escrevendo: " + outfile_name 
+				print "Time:" + duracao
+				f.write(duracao)
+				f.write("\n")
+			num*=2
+			if(i == 3):
+				num = 100
+	sum = float(0)
