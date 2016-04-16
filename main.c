@@ -9,21 +9,26 @@ int main()
   strings = (string_array*)malloc(3300000*sizeof(string_array));
   char aux[6];
   int tam;
-  //int i;
+  int i;
   for(tam=0;scanf("%s",aux)==1;tam++)
   {
  	 
     strcpy(strings[tam].dado,aux);
   }
   gettimeofday(&start,NULL); 
-  combsort(strings,tam);
+  //merge_sort(strings,tam);
+  //bubble_sort(strings,tam);
+  //insertion_sort(strings,tam)
+  //shell_sort(strings,tam);
+  //selection_sort(strings,tam);
+  //combsort(strings,tam);
   gettimeofday(&end,NULL);
   double delta = ((end.tv_sec  - start.tv_sec) * 1000000u + end.tv_usec - start.tv_usec) / 1.e6;
   printf("%lf\n",delta);
-  /*for(i=0;i<tam;i++)
+  for(i=0;i<tam;i++)
   {
   	printf("%s\n",strings[i].dado);
-  }*/
+  }
   free(strings);
   return 0;
 }
