@@ -1,15 +1,18 @@
 #include "sorts.h"
 
-void insertion_sort(string_array *a, int n) {
-    size_t i = 1;
-    for(i=1; i < n; ++i) {
-        string_array tmp;
-        strcpy(tmp.dado,a[i].dado);
-        size_t j = i;
-        while(j > 0 && strcmp(tmp.dado,a[j-1].dado)<0) {
-            strcpy(a[j].dado,a[j-1].dado);
-            --j;
+void insertion_sort(string_array *a, int size) {
+    int i, j;
+    char atual[10];
+
+    for (i = 1; i < size; i++){
+        strcpy(atual, a[i].dado);
+        j = i - 1;
+
+        while ((j >= 0) && strcmp(atual, a[j].dado) < 0){
+            strcpy(a[j + 1].dado, a[j].dado);
+            j = j - 1;
         }
-        strcpy(a[j].dado,tmp.dado);
+    
+        strcpy(a[j + 1].dado, atual);
     }
 }

@@ -1,15 +1,23 @@
 #include "sorts.h"
 
-void shell_sort (string_array *a, int n) {
-    int h, i, j;
-    string_array t;
-    for (h = n; h /= 2;) {
-        for (i = h; i < n; i++) {
-            strcpy(t.dado,a[i].dado);
-            for (j = i; j >= h && strcmp(t.dado,a[j-h].dado)<0; j -= h) {
-                strcpy(a[j].dado,a[j-h].dado);
+void shell_sort (string_array *a, int size) {
+    int i , j;
+    int gap = 1;
+    char value[10];
+    
+    while(gap < size){
+        gap = 3*gap+1;
+    }
+    while(gap > 1) {
+        gap /= 3;
+        for(i = gap; i < size; i++) {
+            strcpy(value, a[i].dado);
+            j = i - gap;
+            while (j >= 0 && strcmp(value, a[j].dado) < 0 ){
+                strcpy(a[j + gap].dado, a[j].dado);
+                j -= gap;
             }
-            strcpy(a[j].dado,t.dado);
+            strcpy(a[j + gap].dado, value);
         }
     }
 }

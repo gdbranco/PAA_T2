@@ -1,13 +1,15 @@
 #include "sorts.h"
 
-void selection_sort(string_array *a, int n) {
-    int i, j, m;
-    for (i = 0; i < n; i++) {
-        for (j = i, m = i; j < n; j++) {
-            if (strcmp(a[j].dado,a[m].dado)<0){
-                m = j;
-            }
-        }
-        string_swap(a,i,m);
-    }
+void selection_sort(string_array *a, int size) {
+   int i, j, min;
+	for (i = 0; i < (size-1); i++){
+		min = i;
+		for (j = (i+1); j < size; j++){
+			if(strcmp(a[j].dado, a[min].dado) < 0) 
+				min = j;
+		}
+		if(i != min) {
+			string_swap(a,i,min);
+		}
+	}
 }

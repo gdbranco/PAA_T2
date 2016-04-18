@@ -9,7 +9,6 @@ int main()
   strings = (string_array*)malloc(3300000*sizeof(string_array));
   char aux[6];
   int tam;
-  //int i;
   for(tam=0;scanf("%s",aux)==1;tam++)
   {
  	 
@@ -20,7 +19,8 @@ int main()
   gettimeofday(&end,NULL);
   double delta = ((end.tv_sec  - start.tv_sec) * 1000000u + end.tv_usec - start.tv_usec) / 1.e6;
   printf("%lf\n",delta);
-  /*for(i=0;i<tam;i++)
+  /*int i;
+  for(i=0;i<tam;i++)
   {
   	printf("%s\n",strings[i].dado);
   }*/

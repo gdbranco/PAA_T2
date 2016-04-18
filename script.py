@@ -46,7 +46,7 @@ if (len(sys.argv) > 2):
 					continue
 				sum = float(0)
 				infile_name = inpath + str(num) + "_" + type.lower() + ".txt"
-				cmd = " ./" + mode.lower() + ".out < " + infile_name
+				cmd = " ./bin/" + mode.lower() + ".out < " + infile_name
 				print "Running: " + cmd
 				for j in range(0,times):
 					print "times " + str(j);		
