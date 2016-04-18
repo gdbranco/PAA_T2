@@ -5,10 +5,10 @@
 #include <stdlib.h>
 typedef struct _string_array
 {
-  char dado[6];
+  char dado[10];
 }string_array;
 void string_swap(string_array *strings, int i, int j);
-void comb_sort(string_array* input,int tam);
+void comb_sort(string_array* input,int size);
 void selection_sort (string_array *a, int n);
 void shell_sort (string_array *a, int n);
 void insertion_sort(string_array *a, int n);
