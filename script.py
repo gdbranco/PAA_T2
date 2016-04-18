@@ -60,10 +60,8 @@ if (len(sys.argv) > 2):
 						break
 					sum += tempo
 					time.sleep(1)
-				sum/=times
-				if(sum>=timeout):
-					estoura = True
 				if(not estoura):
+					sum/=times
 					escreva(outfile_name,sum,num,None,None)
 				num*=2
 				if(i == 3):
