@@ -28,7 +28,7 @@ if (len(sys.argv) > 2):
 	sum = float(0)
 	for mode in sort:
 		print "Rodando para o algoritmo " + mode
-		outpath = "./Saidas/" + mode + "/"
+		outpath = "./Tabelas/" + mode + "/"
 		if not os.path.isdir(outpath):
 			print "Caminho: " + outpath + "\nNao existe e sera criado"
 			os.makedirs(outpath)
