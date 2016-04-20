@@ -20,7 +20,7 @@ def escreva(outfile_name,sum=None,num=None,mode=None,tipo=None):
 			f.write("\n")
 
 if (len(sys.argv) > 2):
-	sort = ["Bubble","Comb","Insertion","Merge","Selection","Shell"]
+	sort = ["Bubble"]
 	files = ["Reversed","Shuffle","Normal"]
 	archives = 20
 	timeout = int(sys.argv[1]);
@@ -46,13 +46,16 @@ if (len(sys.argv) > 2):
 					continue
 				sum = float(0)
 				infile_name = inpath + str(num) + "_" + type.lower() + ".txt"
-				cmd = " ./bin/" + mode.lower() + ".out < " + infile_name
+				cmd = "timeout " + str(timeout) + " ./bin/" + mode.lower() + ".out < " + infile_name
 				print "Running: " + cmd
 				for j in range(0,times):
 					print "times " + str(j);		
 					process = subprocess.Popen(cmd,shell=True, stdout=subprocess.PIPE)
 					process.wait()
-					tempo = float(process.stdout.read())
+					try:
+						tempo = float(process.stdout.read())
+					except ValueError as e:
+						tempo = timeout
 					if(tempo >= timeout):
 						estoura = True
 						print "Nao precisa fazer " + str(num) + " pois sera maior que o timeout"

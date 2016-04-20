@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+extern long long int count;
 typedef struct _string_array
 {
   char dado[10];
@@ -15,5 +16,7 @@ void insertion_sort(string_array *a, int n);
 void bubble_sort (string_array *a, int n);
 void merge (string_array *a, int n, int m);
 void merge_sort (string_array *a, int n);
-void merge_insert(string_array *a, int n, int k);
+void mergeinsert_sort(string_array *a, int n, int k);
+void merge_count (string_array *a, int n, int m);
+void merge_sort_count (string_array *a, int n);
 #endif
