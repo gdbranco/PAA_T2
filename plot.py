@@ -2,6 +2,7 @@
 from matplotlib import pyplot as plt
 import numpy as np
 import linecache
+import os
 
 def read_datafile(file_name):
     # the skiprows keyword is for heading, but I don't know if trailing lines
@@ -11,23 +12,27 @@ def read_datafile(file_name):
 
 #Plotting to our canvas
 
-
-files = ["reversed","shuffle","normal"]
-dirs = ["Bubble", "Comb", "Insertion"]
+files = ["Normal","Reversed","Shuffle"]
+dirs = ["Bubble","Comb","Count","Insertion","Merge","Merge_insert4","Merge_insert8","Merge_insert32","Merge_insert64","Selection","Shell"]
 for sorts in dirs:
     for tipo in files:
-        entrada = "./Saidas/" + sorts + "/" + "saida_" + tipo + ".csv"
+        entrada = "./Saidas/" + sorts + "/" + "saida_" + tipo.lower() + ".csv"
+        outpath = "./Graficos/" + sorts + "/";
+        if not os.path.isdir(outpath):
+        	print "Caminho: " + outpath + "\nNao existe e sera criado"
+        	os.makedirs(outpath)
         data = read_datafile(entrada)
-        print "Amaral mto foda"
 
         tmp = linecache.getline(entrada, 1)
+        tmp = tmp[0:len(tmp)-1]
+        tmp = sorts + " " + tipo
 
-        plt.plot(data['x'], data['y'])
         plt.title(tmp)
+        plt.plot(data['x'], data['y'],"-sr")
         plt.ylabel('Tempo (s)')
         plt.xlabel('Tamanho da entrada')
 
-        saida = "grafico" + str(i) + ".png"
-        plt.savefig(saida)
+        saida = "grafico" + sorts + "_" + tipo + ".png"
+        plt.savefig(outpath+saida)
 
         plt.close()
